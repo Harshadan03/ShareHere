@@ -77,7 +77,7 @@ router.post(
                 })
             }
 
-            // get the payload  which include userId
+            // set the payload  which include userId
             const payload = {
                 user: {
                     id: user.id
@@ -87,8 +87,8 @@ router.post(
             // then sign the token
             jwt.sign(payload,
                 config.get('jwtSecret'), {
-                    expiresIn: 360000
-                },
+                expiresIn: 360000
+            },
                 (err, token) => {
                     if (err) throw err;
                     res.json({

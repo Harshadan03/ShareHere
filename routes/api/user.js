@@ -21,8 +21,8 @@ router.post(
     '/',
     [
         check('name', 'Name is Required')
-        .not()
-        .isEmpty(),
+            .not()
+            .isEmpty(),
 
         check('email', 'Please Include a valid mail').isEmail(),
 
@@ -77,9 +77,9 @@ router.post(
             // Encryped password
             const salt = await bcrypt.genSalt(10) // first we create the salt for encrypt purpose
             user.password = await bcrypt.hash(password, salt)
-            await user.save() // anything which return promise make sure you put await in font of
+            await user.save() // anything which return promise make sure you put await in front of
 
-            // get the payload  which include userId
+            // set the payload  which include userId
             const payload = {
                 user: {
                     id: user.id
@@ -89,8 +89,8 @@ router.post(
             // then sign the token
             jwt.sign(payload,
                 config.get('jwtSecret'), {
-                    expiresIn: 360000
-                },
+                expiresIn: 360000
+            },
                 (err, token) => {
                     if (err) throw err;
                     res.json({
